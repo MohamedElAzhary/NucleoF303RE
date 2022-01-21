@@ -20,6 +20,9 @@ OBJCOPY_BIN :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+APP/LED/Core \
+MCAL/STM32F303RE_MCAL/BSW/Port/Api \
+MCAL/STM32F303RE_MCAL/BSW/Port/Core \
 Src \
 Startup \
 

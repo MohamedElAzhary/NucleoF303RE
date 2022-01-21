@@ -1,2 +1,4 @@
+"./APP/LED/Core/Led_core.o"
+"./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o"
 "./Src/main.o"
 "./Startup/stm32f303x6_startup.o"
