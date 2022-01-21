@@ -1,0 +1,990 @@
+
+NucleoF303RE.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr.text     00000184  08000000  08000000  00010000  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000027c  08000184  08000184  00010184  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .data         00000000  20000000  20000000  00010400  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .bss          00000000  20000000  20000000  00000000  2**0
+                  ALLOC
+  4 .ARM.attributes 00000030  00000000  00000000  00010400  2**0
+                  CONTENTS, READONLY
+  5 .comment      00000053  00000000  00000000  00010430  2**0
+                  CONTENTS, READONLY
+  6 .debug_info   000007c9  00000000  00000000  00010483  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  7 .debug_abbrev 0000011a  00000000  00000000  00010c4c  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  8 .debug_aranges 000002d0  00000000  00000000  00010d66  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  9 .debug_ranges 000002b0  00000000  00000000  00011036  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 10 .debug_macro  00000f87  00000000  00000000  000112e6  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 11 .debug_line   00000c4b  00000000  00000000  0001226d  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 12 .debug_str    0000423f  00000000  00000000  00012eb8  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 13 .debug_frame  00000808  00000000  00000000  000170f8  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+08000184 <main>:
+* Description  :
+*
+*
+*****************************************************************************/
+
+int main(void){
+ 8000184:	b480      	push	{r7}
+ 8000186:	af00      	add	r7, sp, #0
+
+	while(1){
+ 8000188:	e7fe      	b.n	8000188 <main+0x4>
+	...
+
+0800018c <RESET_HANDLER>:
+
+
+/*****************************Function-Definitions****************************/
+/* RESET Handler */
+void RESET_HANDLER(void)
+{
+ 800018c:	b580      	push	{r7, lr}
+ 800018e:	b086      	sub	sp, #24
+ 8000190:	af00      	add	r7, sp, #0
+	/* Copying .data from Flash to .data in SRAM1*/
+	/* Local counter to count number of transferred bytes */
+	uint32_t i;
+	/* Local variable to hold number of bytes found in data section */
+	/* Subtracting start data section address from end data section address after casting them to uint32_t to get size in bytes */
+	uint32_t data_size_bytes = (uint32_t)&_edata - (uint32_t)&_sdata; // Extracting data section size
+ 8000192:	4a19      	ldr	r2, [pc, #100]	; (80001f8 <RESET_HANDLER+0x6c>)
+ 8000194:	4b19      	ldr	r3, [pc, #100]	; (80001fc <RESET_HANDLER+0x70>)
+ 8000196:	1ad3      	subs	r3, r2, r3
+ 8000198:	60bb      	str	r3, [r7, #8]
+	/* DestinationAddress Local Pointer to point at start data section address after casting it to uint8_t* for 1-byte per transfer operation */
+	/* _sdata refers to start address of data at SRAM1 Memory as _sdata is a Virtual Memory Address and data is assigned in SRAM1 */
+	uint8_t* DestinationAddress = (uint8_t*) &_sdata;
+ 800019a:	4b18      	ldr	r3, [pc, #96]	; (80001fc <RESET_HANDLER+0x70>)
+ 800019c:	613b      	str	r3, [r7, #16]
+	/* SourceAddress Local Pointer to point at end text section address after casting it to uint8_t* for 1-byte per transfer operation */
+	/* _etext refers to end address of text at FLASH Memory as _etext is a Virtual Memory Address and _etext is assigned in FLASH */
+	uint8_t* SourceAddress = (uint8_t*) &_etext;
+ 800019e:	4b18      	ldr	r3, [pc, #96]	; (8000200 <RESET_HANDLER+0x74>)
+ 80001a0:	60fb      	str	r3, [r7, #12]
+	/* For data_size_bytes number of bytes, move data pointed at by SourceAddress to position pointed at by DestinationAddress then increment both addresses */
+	for(i=0; i < data_size_bytes; i++)
+ 80001a2:	2300      	movs	r3, #0
+ 80001a4:	617b      	str	r3, [r7, #20]
+ 80001a6:	e00a      	b.n	80001be <RESET_HANDLER+0x32>
+	{
+		*DestinationAddress++ = *SourceAddress++;
+ 80001a8:	68fa      	ldr	r2, [r7, #12]
+ 80001aa:	1c53      	adds	r3, r2, #1
+ 80001ac:	60fb      	str	r3, [r7, #12]
+ 80001ae:	693b      	ldr	r3, [r7, #16]
+ 80001b0:	1c59      	adds	r1, r3, #1
+ 80001b2:	6139      	str	r1, [r7, #16]
+ 80001b4:	7812      	ldrb	r2, [r2, #0]
+ 80001b6:	701a      	strb	r2, [r3, #0]
+	for(i=0; i < data_size_bytes; i++)
+ 80001b8:	697b      	ldr	r3, [r7, #20]
+ 80001ba:	3301      	adds	r3, #1
+ 80001bc:	617b      	str	r3, [r7, #20]
+ 80001be:	697a      	ldr	r2, [r7, #20]
+ 80001c0:	68bb      	ldr	r3, [r7, #8]
+ 80001c2:	429a      	cmp	r2, r3
+ 80001c4:	d3f0      	bcc.n	80001a8 <RESET_HANDLER+0x1c>
+	}
+	
+	/* Initializing .bss data in SRAM */
+	/* Local variable to hold number of bytes found in bss section */
+	/* Subtracting start bss section address from end bss section address after casting them to uint32_t to get size in bytes */
+	uint32_t bss_size_bytes = (uint32_t)&_ebss - (uint32_t)&_sbss; // Extracting bss section size
+ 80001c6:	4a0f      	ldr	r2, [pc, #60]	; (8000204 <RESET_HANDLER+0x78>)
+ 80001c8:	4b0f      	ldr	r3, [pc, #60]	; (8000208 <RESET_HANDLER+0x7c>)
+ 80001ca:	1ad3      	subs	r3, r2, r3
+ 80001cc:	607b      	str	r3, [r7, #4]
+	/* DestinationAddress Local Pointer to point at start bss section address after casting it to uint8_t* for 1-byte per transfer operation */
+	DestinationAddress = (uint8_t*) &_sbss;
+ 80001ce:	4b0e      	ldr	r3, [pc, #56]	; (8000208 <RESET_HANDLER+0x7c>)
+ 80001d0:	613b      	str	r3, [r7, #16]
+	/* No SourceAddress was used as variables stored in bss section are initialized with 0 */
+	/* For bss_size_bytes number of bytes, value 0 to position pointed at by DestinationAddress then increment DestinationAddress */
+	for(i=0; i < bss_size_bytes; i++)
+ 80001d2:	2300      	movs	r3, #0
+ 80001d4:	617b      	str	r3, [r7, #20]
+ 80001d6:	e007      	b.n	80001e8 <RESET_HANDLER+0x5c>
+	{
+		*DestinationAddress++ = 0;
+ 80001d8:	693b      	ldr	r3, [r7, #16]
+ 80001da:	1c5a      	adds	r2, r3, #1
+ 80001dc:	613a      	str	r2, [r7, #16]
+ 80001de:	2200      	movs	r2, #0
+ 80001e0:	701a      	strb	r2, [r3, #0]
+	for(i=0; i < bss_size_bytes; i++)
+ 80001e2:	697b      	ldr	r3, [r7, #20]
+ 80001e4:	3301      	adds	r3, #1
+ 80001e6:	617b      	str	r3, [r7, #20]
+ 80001e8:	697a      	ldr	r2, [r7, #20]
+ 80001ea:	687b      	ldr	r3, [r7, #4]
+ 80001ec:	429a      	cmp	r2, r3
+ 80001ee:	d3f3      	bcc.n	80001d8 <RESET_HANDLER+0x4c>
+	}
+	
+	/* Call Main function */
+	main();
+ 80001f0:	f7ff ffc8 	bl	8000184 <main>
+
+	/* In case no Main found loop in while(1) */
+	while(1);
+ 80001f4:	e7fe      	b.n	80001f4 <RESET_HANDLER+0x68>
+ 80001f6:	bf00      	nop
+ 80001f8:	20000000 	.word	0x20000000
+ 80001fc:	20000000 	.word	0x20000000
+ 8000200:	08000400 	.word	0x08000400
+ 8000204:	20000000 	.word	0x20000000
+ 8000208:	20000000 	.word	0x20000000
+
+0800020c <NMI_HANDLER>:
+}
+
+/* NMI Handler */
+ __attribute__ ((weak)) void NMI_HANDLER(void)
+{
+ 800020c:	b480      	push	{r7}
+ 800020e:	af00      	add	r7, sp, #0
+	while(1);
+ 8000210:	e7fe      	b.n	8000210 <NMI_HANDLER+0x4>
+
+08000212 <HARDFAULT_HANDLER>:
+}
+
+/* HARDFAULT Handler */
+ __attribute__ ((weak)) void HARDFAULT_HANDLER(void)
+{
+ 8000212:	b480      	push	{r7}
+ 8000214:	af00      	add	r7, sp, #0
+	while(1);
+ 8000216:	e7fe      	b.n	8000216 <HARDFAULT_HANDLER+0x4>
+
+08000218 <MEMMANGE_HANDLER>:
+}
+
+/* MEMMANGE Handler */
+ __attribute__ ((weak)) void MEMMANGE_HANDLER(void)
+{
+ 8000218:	b480      	push	{r7}
+ 800021a:	af00      	add	r7, sp, #0
+	while(1);
+ 800021c:	e7fe      	b.n	800021c <MEMMANGE_HANDLER+0x4>
+
+0800021e <BUSFAULT_HANDLER>:
+}
+
+/* BUSFAULT Handler */
+ __attribute__ ((weak)) void BUSFAULT_HANDLER(void)
+{
+ 800021e:	b480      	push	{r7}
+ 8000220:	af00      	add	r7, sp, #0
+	while(1);
+ 8000222:	e7fe      	b.n	8000222 <BUSFAULT_HANDLER+0x4>
+
+08000224 <USAGEFAULT_HANDLER>:
+}
+
+/* USAGEFAULT Handler */
+ __attribute__ ((weak)) void USAGEFAULT_HANDLER(void)
+{
+ 8000224:	b480      	push	{r7}
+ 8000226:	af00      	add	r7, sp, #0
+	while(1);
+ 8000228:	e7fe      	b.n	8000228 <USAGEFAULT_HANDLER+0x4>
+
+0800022a <SVCALL_HANDLER>:
+}
+
+/* SVCALL Handler */
+ __attribute__ ((weak)) void SVCALL_HANDLER(void)
+{
+ 800022a:	b480      	push	{r7}
+ 800022c:	af00      	add	r7, sp, #0
+	while(1);
+ 800022e:	e7fe      	b.n	800022e <SVCALL_HANDLER+0x4>
+
+08000230 <PENDSV_HANDLER>:
+}
+
+/* PENDSV Handler */
+ __attribute__ ((weak)) void PENDSV_HANDLER(void)
+{
+ 8000230:	b480      	push	{r7}
+ 8000232:	af00      	add	r7, sp, #0
+	while(1);
+ 8000234:	e7fe      	b.n	8000234 <PENDSV_HANDLER+0x4>
+
+08000236 <SYSTICK_HANDLER>:
+}
+
+/* SYSTICK Handler */
+ __attribute__ ((weak)) void SYSTICK_HANDLER(void)
+{
+ 8000236:	b480      	push	{r7}
+ 8000238:	af00      	add	r7, sp, #0
+	while(1);
+ 800023a:	e7fe      	b.n	800023a <SYSTICK_HANDLER+0x4>
+
+0800023c <WWDG_HANDLER>:
+}
+
+
+ __attribute__ ((weak)) void WWDG_HANDLER(void)
+{
+ 800023c:	b480      	push	{r7}
+ 800023e:	af00      	add	r7, sp, #0
+	while(1);
+ 8000240:	e7fe      	b.n	8000240 <WWDG_HANDLER+0x4>
+
+08000242 <PVD_HANDLER>:
+}
+
+ __attribute__ ((weak)) void PVD_HANDLER(void)
+{
+ 8000242:	b480      	push	{r7}
+ 8000244:	af00      	add	r7, sp, #0
+	while(1);
+ 8000246:	e7fe      	b.n	8000246 <PVD_HANDLER+0x4>
+
+08000248 <TAMPER_STAMP_HANDLER>:
+}			
+
+ __attribute__ ((weak)) void TAMPER_STAMP_HANDLER(void)
+{
+ 8000248:	b480      	push	{r7}
+ 800024a:	af00      	add	r7, sp, #0
+	while(1);
+ 800024c:	e7fe      	b.n	800024c <TAMPER_STAMP_HANDLER+0x4>
+
+0800024e <RTC_WKUP_HANDLER>:
+}
+
+ __attribute__ ((weak)) void RTC_WKUP_HANDLER(void)			
+{
+ 800024e:	b480      	push	{r7}
+ 8000250:	af00      	add	r7, sp, #0
+	while(1);
+ 8000252:	e7fe      	b.n	8000252 <RTC_WKUP_HANDLER+0x4>
+
+08000254 <FLASH_HANDLER>:
+}
+
+ __attribute__ ((weak)) void FLASH_HANDLER(void)			
+{
+ 8000254:	b480      	push	{r7}
+ 8000256:	af00      	add	r7, sp, #0
+	while(1);
+ 8000258:	e7fe      	b.n	8000258 <FLASH_HANDLER+0x4>
+
+0800025a <RCC_HANDLER>:
+}
+
+ __attribute__ ((weak)) void RCC_HANDLER(void)				
+{
+ 800025a:	b480      	push	{r7}
+ 800025c:	af00      	add	r7, sp, #0
+	while(1);
+ 800025e:	e7fe      	b.n	800025e <RCC_HANDLER+0x4>
+
+08000260 <EXTI0_HANDLER>:
+}
+
+ __attribute__ ((weak)) void EXTI0_HANDLER(void)			
+{
+ 8000260:	b480      	push	{r7}
+ 8000262:	af00      	add	r7, sp, #0
+	while(1);
+ 8000264:	e7fe      	b.n	8000264 <EXTI0_HANDLER+0x4>
+
+08000266 <EXTI1_HANDLER>:
+}
+
+ __attribute__ ((weak)) void EXTI1_HANDLER(void)			
+{
+ 8000266:	b480      	push	{r7}
+ 8000268:	af00      	add	r7, sp, #0
+	while(1);
+ 800026a:	e7fe      	b.n	800026a <EXTI1_HANDLER+0x4>
+
+0800026c <EXTI2_TS_HANDLER>:
+}
+
+ __attribute__ ((weak)) void EXTI2_TS_HANDLER(void)			
+{
+ 800026c:	b480      	push	{r7}
+ 800026e:	af00      	add	r7, sp, #0
+	while(1);
+ 8000270:	e7fe      	b.n	8000270 <EXTI2_TS_HANDLER+0x4>
+
+08000272 <EXTI3_HANDLER>:
+}
+
+ __attribute__ ((weak)) void EXTI3_HANDLER(void)			
+{
+ 8000272:	b480      	push	{r7}
+ 8000274:	af00      	add	r7, sp, #0
+	while(1);
+ 8000276:	e7fe      	b.n	8000276 <EXTI3_HANDLER+0x4>
+
+08000278 <EXTI4_HANDLER>:
+}
+
+ __attribute__ ((weak)) void EXTI4_HANDLER(void)			
+{
+ 8000278:	b480      	push	{r7}
+ 800027a:	af00      	add	r7, sp, #0
+	while(1);
+ 800027c:	e7fe      	b.n	800027c <EXTI4_HANDLER+0x4>
+
+0800027e <DMA1_CHANNEL1_HANDLER>:
+}
+
+ __attribute__ ((weak)) void DMA1_CHANNEL1_HANDLER(void)	
+{
+ 800027e:	b480      	push	{r7}
+ 8000280:	af00      	add	r7, sp, #0
+	while(1);
+ 8000282:	e7fe      	b.n	8000282 <DMA1_CHANNEL1_HANDLER+0x4>
+
+08000284 <DMA1_CHANNEL2_HANDLER>:
+}
+
+ __attribute__ ((weak)) void DMA1_CHANNEL2_HANDLER(void)	
+{
+ 8000284:	b480      	push	{r7}
+ 8000286:	af00      	add	r7, sp, #0
+	while(1);
+ 8000288:	e7fe      	b.n	8000288 <DMA1_CHANNEL2_HANDLER+0x4>
+
+0800028a <DMA1_CHANNEL3_HANDLER>:
+}
+
+ __attribute__ ((weak)) void DMA1_CHANNEL3_HANDLER(void)	
+{
+ 800028a:	b480      	push	{r7}
+ 800028c:	af00      	add	r7, sp, #0
+	while(1);
+ 800028e:	e7fe      	b.n	800028e <DMA1_CHANNEL3_HANDLER+0x4>
+
+08000290 <DMA1_CHANNEL4_HANDLER>:
+}
+
+ __attribute__ ((weak)) void DMA1_CHANNEL4_HANDLER(void)	
+{
+ 8000290:	b480      	push	{r7}
+ 8000292:	af00      	add	r7, sp, #0
+	while(1);
+ 8000294:	e7fe      	b.n	8000294 <DMA1_CHANNEL4_HANDLER+0x4>
+
+08000296 <DMA1_CHANNEL5_HANDLER>:
+}
+
+ __attribute__ ((weak)) void DMA1_CHANNEL5_HANDLER(void)	
+{
+ 8000296:	b480      	push	{r7}
+ 8000298:	af00      	add	r7, sp, #0
+	while(1);
+ 800029a:	e7fe      	b.n	800029a <DMA1_CHANNEL5_HANDLER+0x4>
+
+0800029c <DMA1_CHANNEL6_HANDLER>:
+}
+
+ __attribute__ ((weak)) void DMA1_CHANNEL6_HANDLER(void)	
+{
+ 800029c:	b480      	push	{r7}
+ 800029e:	af00      	add	r7, sp, #0
+	while(1);
+ 80002a0:	e7fe      	b.n	80002a0 <DMA1_CHANNEL6_HANDLER+0x4>
+
+080002a2 <DMA1_CHANNEL7_HANDLER>:
+}
+
+ __attribute__ ((weak)) void DMA1_CHANNEL7_HANDLER(void)	
+{
+ 80002a2:	b480      	push	{r7}
+ 80002a4:	af00      	add	r7, sp, #0
+	while(1);
+ 80002a6:	e7fe      	b.n	80002a6 <DMA1_CHANNEL7_HANDLER+0x4>
+
+080002a8 <ADC1_ADC2_GLOBAL_HANDLER>:
+}
+
+ __attribute__ ((weak)) void ADC1_ADC2_GLOBAL_HANDLER(void)	
+{
+ 80002a8:	b480      	push	{r7}
+ 80002aa:	af00      	add	r7, sp, #0
+	while(1);
+ 80002ac:	e7fe      	b.n	80002ac <ADC1_ADC2_GLOBAL_HANDLER+0x4>
+
+080002ae <USB_HP_CAN_TX_HANDLER>:
+}
+
+ __attribute__ ((weak)) void USB_HP_CAN_TX_HANDLER(void)	
+{
+ 80002ae:	b480      	push	{r7}
+ 80002b0:	af00      	add	r7, sp, #0
+	while(1);
+ 80002b2:	e7fe      	b.n	80002b2 <USB_HP_CAN_TX_HANDLER+0x4>
+
+080002b4 <USB_LP_CAN_RX0_HANDLER>:
+}
+
+ __attribute__ ((weak)) void USB_LP_CAN_RX0_HANDLER(void)	
+{
+ 80002b4:	b480      	push	{r7}
+ 80002b6:	af00      	add	r7, sp, #0
+	while(1);
+ 80002b8:	e7fe      	b.n	80002b8 <USB_LP_CAN_RX0_HANDLER+0x4>
+
+080002ba <CAN_RX1_HANDLER>:
+}
+
+ __attribute__ ((weak)) void CAN_RX1_HANDLER(void)			
+{
+ 80002ba:	b480      	push	{r7}
+ 80002bc:	af00      	add	r7, sp, #0
+	while(1);
+ 80002be:	e7fe      	b.n	80002be <CAN_RX1_HANDLER+0x4>
+
+080002c0 <CAN_SCE_HANDLER>:
+}
+
+ __attribute__ ((weak)) void CAN_SCE_HANDLER(void)			
+{
+ 80002c0:	b480      	push	{r7}
+ 80002c2:	af00      	add	r7, sp, #0
+	while(1);
+ 80002c4:	e7fe      	b.n	80002c4 <CAN_SCE_HANDLER+0x4>
+
+080002c6 <EXTI9_5_HANDLER>:
+}
+
+ __attribute__ ((weak)) void EXTI9_5_HANDLER(void)			
+{
+ 80002c6:	b480      	push	{r7}
+ 80002c8:	af00      	add	r7, sp, #0
+	while(1);
+ 80002ca:	e7fe      	b.n	80002ca <EXTI9_5_HANDLER+0x4>
+
+080002cc <TIM1_BRK_TIM15_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM1_BRK_TIM15_HANDLER(void)	
+{
+ 80002cc:	b480      	push	{r7}
+ 80002ce:	af00      	add	r7, sp, #0
+	while(1);
+ 80002d0:	e7fe      	b.n	80002d0 <TIM1_BRK_TIM15_HANDLER+0x4>
+
+080002d2 <TIM1_UP_TIM16_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM1_UP_TIM16_HANDLER(void)	
+{
+ 80002d2:	b480      	push	{r7}
+ 80002d4:	af00      	add	r7, sp, #0
+	while(1);
+ 80002d6:	e7fe      	b.n	80002d6 <TIM1_UP_TIM16_HANDLER+0x4>
+
+080002d8 <TIM1_TRG_COM_TIM17_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM1_TRG_COM_TIM17_HANDLER(void)	
+{
+ 80002d8:	b480      	push	{r7}
+ 80002da:	af00      	add	r7, sp, #0
+	while(1);
+ 80002dc:	e7fe      	b.n	80002dc <TIM1_TRG_COM_TIM17_HANDLER+0x4>
+
+080002de <TIM1_CC_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM1_CC_HANDLER(void)			
+{
+ 80002de:	b480      	push	{r7}
+ 80002e0:	af00      	add	r7, sp, #0
+	while(1);
+ 80002e2:	e7fe      	b.n	80002e2 <TIM1_CC_HANDLER+0x4>
+
+080002e4 <TIM2_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM2_HANDLER(void)				
+{
+ 80002e4:	b480      	push	{r7}
+ 80002e6:	af00      	add	r7, sp, #0
+	while(1);
+ 80002e8:	e7fe      	b.n	80002e8 <TIM2_HANDLER+0x4>
+
+080002ea <TIM3_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM3_HANDLER(void)				
+{
+ 80002ea:	b480      	push	{r7}
+ 80002ec:	af00      	add	r7, sp, #0
+	while(1);
+ 80002ee:	e7fe      	b.n	80002ee <TIM3_HANDLER+0x4>
+
+080002f0 <TIM4_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM4_HANDLER(void)				
+{
+ 80002f0:	b480      	push	{r7}
+ 80002f2:	af00      	add	r7, sp, #0
+	while(1);
+ 80002f4:	e7fe      	b.n	80002f4 <TIM4_HANDLER+0x4>
+
+080002f6 <I2C1_EV_HANDLER>:
+}
+
+ __attribute__ ((weak)) void I2C1_EV_HANDLER(void)			
+{
+ 80002f6:	b480      	push	{r7}
+ 80002f8:	af00      	add	r7, sp, #0
+	while(1);
+ 80002fa:	e7fe      	b.n	80002fa <I2C1_EV_HANDLER+0x4>
+
+080002fc <I2C1_ER_HANDLER>:
+}
+
+ __attribute__ ((weak)) void I2C1_ER_HANDLER(void)			
+{
+ 80002fc:	b480      	push	{r7}
+ 80002fe:	af00      	add	r7, sp, #0
+	while(1);
+ 8000300:	e7fe      	b.n	8000300 <I2C1_ER_HANDLER+0x4>
+
+08000302 <I2C2_EV_HANDLER>:
+}
+
+ __attribute__ ((weak)) void I2C2_EV_HANDLER(void)			
+{
+ 8000302:	b480      	push	{r7}
+ 8000304:	af00      	add	r7, sp, #0
+	while(1);
+ 8000306:	e7fe      	b.n	8000306 <I2C2_EV_HANDLER+0x4>
+
+08000308 <I2C2_ER_HANDLER>:
+}
+
+ __attribute__ ((weak)) void I2C2_ER_HANDLER(void)			
+{
+ 8000308:	b480      	push	{r7}
+ 800030a:	af00      	add	r7, sp, #0
+	while(1);
+ 800030c:	e7fe      	b.n	800030c <I2C2_ER_HANDLER+0x4>
+
+0800030e <SPI1_HANDLER>:
+}
+
+ __attribute__ ((weak)) void SPI1_HANDLER(void)				
+{
+ 800030e:	b480      	push	{r7}
+ 8000310:	af00      	add	r7, sp, #0
+	while(1);
+ 8000312:	e7fe      	b.n	8000312 <SPI1_HANDLER+0x4>
+
+08000314 <SPI2_HANDLER>:
+}
+
+ __attribute__ ((weak)) void SPI2_HANDLER(void)				
+{
+ 8000314:	b480      	push	{r7}
+ 8000316:	af00      	add	r7, sp, #0
+	while(1);
+ 8000318:	e7fe      	b.n	8000318 <SPI2_HANDLER+0x4>
+
+0800031a <USART1_HANDLER>:
+}
+
+ __attribute__ ((weak)) void USART1_HANDLER(void)			
+{
+ 800031a:	b480      	push	{r7}
+ 800031c:	af00      	add	r7, sp, #0
+	while(1);
+ 800031e:	e7fe      	b.n	800031e <USART1_HANDLER+0x4>
+
+08000320 <USART2_HANDLER>:
+}
+
+ __attribute__ ((weak)) void USART2_HANDLER(void)			
+{
+ 8000320:	b480      	push	{r7}
+ 8000322:	af00      	add	r7, sp, #0
+	while(1);
+ 8000324:	e7fe      	b.n	8000324 <USART2_HANDLER+0x4>
+
+08000326 <USART3_HANDLER>:
+}
+
+ __attribute__ ((weak)) void USART3_HANDLER(void)			
+{
+ 8000326:	b480      	push	{r7}
+ 8000328:	af00      	add	r7, sp, #0
+	while(1);
+ 800032a:	e7fe      	b.n	800032a <USART3_HANDLER+0x4>
+
+0800032c <EXTI15_10_HANDLER>:
+}
+
+ __attribute__ ((weak)) void EXTI15_10_HANDLER(void)		
+{
+ 800032c:	b480      	push	{r7}
+ 800032e:	af00      	add	r7, sp, #0
+	while(1);
+ 8000330:	e7fe      	b.n	8000330 <EXTI15_10_HANDLER+0x4>
+
+08000332 <RTC_ALARM_HANDLER>:
+}
+
+ __attribute__ ((weak)) void RTC_ALARM_HANDLER(void)		
+{
+ 8000332:	b480      	push	{r7}
+ 8000334:	af00      	add	r7, sp, #0
+	while(1);
+ 8000336:	e7fe      	b.n	8000336 <RTC_ALARM_HANDLER+0x4>
+
+08000338 <USB_WAKEUP_HANDLER>:
+}
+
+ __attribute__ ((weak)) void USB_WAKEUP_HANDLER(void)		
+{
+ 8000338:	b480      	push	{r7}
+ 800033a:	af00      	add	r7, sp, #0
+	while(1);
+ 800033c:	e7fe      	b.n	800033c <USB_WAKEUP_HANDLER+0x4>
+
+0800033e <TIM8_BRK_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM8_BRK_HANDLER(void)			
+{
+ 800033e:	b480      	push	{r7}
+ 8000340:	af00      	add	r7, sp, #0
+	while(1);
+ 8000342:	e7fe      	b.n	8000342 <TIM8_BRK_HANDLER+0x4>
+
+08000344 <TIM8_UP_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM8_UP_HANDLER(void)
+{
+ 8000344:	b480      	push	{r7}
+ 8000346:	af00      	add	r7, sp, #0
+	while(1);
+ 8000348:	e7fe      	b.n	8000348 <TIM8_UP_HANDLER+0x4>
+
+0800034a <TIM8_TRG_COM_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM8_TRG_COM_HANDLER(void)		
+{
+ 800034a:	b480      	push	{r7}
+ 800034c:	af00      	add	r7, sp, #0
+	while(1);
+ 800034e:	e7fe      	b.n	800034e <TIM8_TRG_COM_HANDLER+0x4>
+
+08000350 <TIM8_CC_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM8_CC_HANDLER(void)			
+{
+ 8000350:	b480      	push	{r7}
+ 8000352:	af00      	add	r7, sp, #0
+	while(1);
+ 8000354:	e7fe      	b.n	8000354 <TIM8_CC_HANDLER+0x4>
+
+08000356 <ADC3_HANDLER>:
+}
+
+ __attribute__ ((weak)) void ADC3_HANDLER(void)				
+{
+ 8000356:	b480      	push	{r7}
+ 8000358:	af00      	add	r7, sp, #0
+	while(1);
+ 800035a:	e7fe      	b.n	800035a <ADC3_HANDLER+0x4>
+
+0800035c <FMC_HANDLER>:
+}
+
+ __attribute__ ((weak)) void FMC_HANDLER(void)				
+{
+ 800035c:	b480      	push	{r7}
+ 800035e:	af00      	add	r7, sp, #0
+	while(1);
+ 8000360:	e7fe      	b.n	8000360 <FMC_HANDLER+0x4>
+
+08000362 <SPI3_HANDLER>:
+}
+
+ __attribute__ ((weak)) void SPI3_HANDLER(void)				
+{
+ 8000362:	b480      	push	{r7}
+ 8000364:	af00      	add	r7, sp, #0
+	while(1);
+ 8000366:	e7fe      	b.n	8000366 <SPI3_HANDLER+0x4>
+
+08000368 <UART4_HANDLER>:
+}
+
+ __attribute__ ((weak)) void UART4_HANDLER(void)			
+{
+ 8000368:	b480      	push	{r7}
+ 800036a:	af00      	add	r7, sp, #0
+	while(1);
+ 800036c:	e7fe      	b.n	800036c <UART4_HANDLER+0x4>
+
+0800036e <UART5_HANDLER>:
+}
+
+ __attribute__ ((weak)) void UART5_HANDLER(void)			
+{
+ 800036e:	b480      	push	{r7}
+ 8000370:	af00      	add	r7, sp, #0
+	while(1);
+ 8000372:	e7fe      	b.n	8000372 <UART5_HANDLER+0x4>
+
+08000374 <TIM6_DAC_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM6_DAC_HANDLER(void)			
+{
+ 8000374:	b480      	push	{r7}
+ 8000376:	af00      	add	r7, sp, #0
+	while(1);
+ 8000378:	e7fe      	b.n	8000378 <TIM6_DAC_HANDLER+0x4>
+
+0800037a <TIM7_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM7_HANDLER(void)				
+{
+ 800037a:	b480      	push	{r7}
+ 800037c:	af00      	add	r7, sp, #0
+	while(1);
+ 800037e:	e7fe      	b.n	800037e <TIM7_HANDLER+0x4>
+
+08000380 <DMA2_CHANNEL1_HANDLER>:
+}
+
+ __attribute__ ((weak)) void DMA2_CHANNEL1_HANDLER(void)	
+{
+ 8000380:	b480      	push	{r7}
+ 8000382:	af00      	add	r7, sp, #0
+	while(1);
+ 8000384:	e7fe      	b.n	8000384 <DMA2_CHANNEL1_HANDLER+0x4>
+
+08000386 <DMA2_CHANNEL2_HANDLER>:
+}
+
+ __attribute__ ((weak)) void DMA2_CHANNEL2_HANDLER(void)	
+{
+ 8000386:	b480      	push	{r7}
+ 8000388:	af00      	add	r7, sp, #0
+	while(1);
+ 800038a:	e7fe      	b.n	800038a <DMA2_CHANNEL2_HANDLER+0x4>
+
+0800038c <DMA2_CHANNEL3_HANDLER>:
+}
+
+ __attribute__ ((weak)) void DMA2_CHANNEL3_HANDLER(void)	
+{
+ 800038c:	b480      	push	{r7}
+ 800038e:	af00      	add	r7, sp, #0
+	while(1);
+ 8000390:	e7fe      	b.n	8000390 <DMA2_CHANNEL3_HANDLER+0x4>
+
+08000392 <DMA2_CHANNEL4_HANDLER>:
+}
+
+ __attribute__ ((weak)) void DMA2_CHANNEL4_HANDLER(void)	
+{
+ 8000392:	b480      	push	{r7}
+ 8000394:	af00      	add	r7, sp, #0
+	while(1);
+ 8000396:	e7fe      	b.n	8000396 <DMA2_CHANNEL4_HANDLER+0x4>
+
+08000398 <DMA2_CHANNEL5_HANDLER>:
+}
+
+ __attribute__ ((weak)) void DMA2_CHANNEL5_HANDLER(void)	
+{
+ 8000398:	b480      	push	{r7}
+ 800039a:	af00      	add	r7, sp, #0
+	while(1);
+ 800039c:	e7fe      	b.n	800039c <DMA2_CHANNEL5_HANDLER+0x4>
+
+0800039e <ADC4_HANDLER>:
+}
+
+ __attribute__ ((weak)) void ADC4_HANDLER(void)				
+{
+ 800039e:	b480      	push	{r7}
+ 80003a0:	af00      	add	r7, sp, #0
+	while(1);
+ 80003a2:	e7fe      	b.n	80003a2 <ADC4_HANDLER+0x4>
+
+080003a4 <COMP1_COMP2_COMP3_HANDLER>:
+}
+
+ __attribute__ ((weak)) void COMP1_COMP2_COMP3_HANDLER(void)		
+{
+ 80003a4:	b480      	push	{r7}
+ 80003a6:	af00      	add	r7, sp, #0
+	while(1);
+ 80003a8:	e7fe      	b.n	80003a8 <COMP1_COMP2_COMP3_HANDLER+0x4>
+
+080003aa <COMP4_COMP5_COMP6_HANDLER>:
+}
+
+ __attribute__ ((weak)) void COMP4_COMP5_COMP6_HANDLER(void)		
+{
+ 80003aa:	b480      	push	{r7}
+ 80003ac:	af00      	add	r7, sp, #0
+	while(1);
+ 80003ae:	e7fe      	b.n	80003ae <COMP4_COMP5_COMP6_HANDLER+0x4>
+
+080003b0 <COMP7_HANDLER>:
+}
+
+ __attribute__ ((weak)) void COMP7_HANDLER(void)			
+{
+ 80003b0:	b480      	push	{r7}
+ 80003b2:	af00      	add	r7, sp, #0
+	while(1);
+ 80003b4:	e7fe      	b.n	80003b4 <COMP7_HANDLER+0x4>
+
+080003b6 <I2C3_EV_HANDLER>:
+}
+
+ __attribute__ ((weak)) void I2C3_EV_HANDLER(void)			
+{
+ 80003b6:	b480      	push	{r7}
+ 80003b8:	af00      	add	r7, sp, #0
+	while(1);
+ 80003ba:	e7fe      	b.n	80003ba <I2C3_EV_HANDLER+0x4>
+
+080003bc <I2C3_ER_HANDLER>:
+}
+
+ __attribute__ ((weak)) void I2C3_ER_HANDLER(void)			
+{
+ 80003bc:	b480      	push	{r7}
+ 80003be:	af00      	add	r7, sp, #0
+	while(1);
+ 80003c0:	e7fe      	b.n	80003c0 <I2C3_ER_HANDLER+0x4>
+
+080003c2 <USB_HP_HANDLER>:
+}
+
+ __attribute__ ((weak)) void USB_HP_HANDLER(void)			
+{
+ 80003c2:	b480      	push	{r7}
+ 80003c4:	af00      	add	r7, sp, #0
+	while(1);
+ 80003c6:	e7fe      	b.n	80003c6 <USB_HP_HANDLER+0x4>
+
+080003c8 <USB_HL_HANDLER>:
+}
+
+ __attribute__ ((weak)) void USB_HL_HANDLER(void)			
+{
+ 80003c8:	b480      	push	{r7}
+ 80003ca:	af00      	add	r7, sp, #0
+	while(1);
+ 80003cc:	e7fe      	b.n	80003cc <USB_HL_HANDLER+0x4>
+
+080003ce <USB_WAKEUP_RMP_HANDLER>:
+}
+
+ __attribute__ ((weak)) void USB_WAKEUP_RMP_HANDLER(void)	
+{
+ 80003ce:	b480      	push	{r7}
+ 80003d0:	af00      	add	r7, sp, #0
+	while(1);
+ 80003d2:	e7fe      	b.n	80003d2 <USB_WAKEUP_RMP_HANDLER+0x4>
+
+080003d4 <TIM20_BRK_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM20_BRK_HANDLER(void)		
+{
+ 80003d4:	b480      	push	{r7}
+ 80003d6:	af00      	add	r7, sp, #0
+	while(1);
+ 80003d8:	e7fe      	b.n	80003d8 <TIM20_BRK_HANDLER+0x4>
+
+080003da <TIM20_UP_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM20_UP_HANDLER(void)			
+{
+ 80003da:	b480      	push	{r7}
+ 80003dc:	af00      	add	r7, sp, #0
+	while(1);
+ 80003de:	e7fe      	b.n	80003de <TIM20_UP_HANDLER+0x4>
+
+080003e0 <TIM20_TRG_COM_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM20_TRG_COM_HANDLER(void)	
+{
+ 80003e0:	b480      	push	{r7}
+ 80003e2:	af00      	add	r7, sp, #0
+	while(1);
+ 80003e4:	e7fe      	b.n	80003e4 <TIM20_TRG_COM_HANDLER+0x4>
+
+080003e6 <TIM20_CC_HANDLER>:
+}
+
+ __attribute__ ((weak)) void TIM20_CC_HANDLER(void)			
+{
+ 80003e6:	b480      	push	{r7}
+ 80003e8:	af00      	add	r7, sp, #0
+	while(1);
+ 80003ea:	e7fe      	b.n	80003ea <TIM20_CC_HANDLER+0x4>
+
+080003ec <FPU_HANDLER>:
+}
+
+ __attribute__ ((weak)) void FPU_HANDLER(void)				
+{
+ 80003ec:	b480      	push	{r7}
+ 80003ee:	af00      	add	r7, sp, #0
+	while(1);
+ 80003f0:	e7fe      	b.n	80003f0 <FPU_HANDLER+0x4>
+
+080003f2 <SPI4_HANDLER>:
+}
+
+ __attribute__ ((weak)) void SPI4_HANDLER(void)				
+{
+ 80003f2:	b480      	push	{r7}
+ 80003f4:	af00      	add	r7, sp, #0
+	while(1);
+ 80003f6:	e7fe      	b.n	80003f6 <SPI4_HANDLER+0x4>
+
+080003f8 <_init>:
+ 80003f8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80003fa:	bf00      	nop
+
+080003fc <_fini>:
+ 80003fc:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80003fe:	bf00      	nop
