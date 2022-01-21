@@ -32,6 +32,13 @@ Discarded input sections
  .ARM.attributes
                 0x0000000000000000       0x1c c:/st/stm32cubeide_1.7.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
  .group         0x0000000000000000        0xc ./Src/main.o
+ .group         0x0000000000000000        0xc ./Src/main.o
+ .group         0x0000000000000000        0xc ./Src/main.o
+ .group         0x0000000000000000        0xc ./Src/main.o
+ .group         0x0000000000000000        0xc ./Src/main.o
+ .group         0x0000000000000000        0xc ./Src/main.o
+ .group         0x0000000000000000        0xc ./Src/main.o
+ .group         0x0000000000000000        0xc ./Src/main.o
  .text          0x0000000000000000        0x0 ./Src/main.o
  .data          0x0000000000000000        0x0 ./Src/main.o
  .bss           0x0000000000000000        0x0 ./Src/main.o
@@ -46,6 +53,12 @@ Discarded input sections
  .data          0x0000000000000000        0x0 ./Startup/stm32f303x6_startup.o
  .bss           0x0000000000000000        0x0 ./Startup/stm32f303x6_startup.o
  .debug_macro   0x0000000000000000      0xaae ./Startup/stm32f303x6_startup.o
+ .debug_macro   0x0000000000000000       0x22 ./Startup/stm32f303x6_startup.o
+ .debug_macro   0x0000000000000000       0x8e ./Startup/stm32f303x6_startup.o
+ .debug_macro   0x0000000000000000       0x51 ./Startup/stm32f303x6_startup.o
+ .debug_macro   0x0000000000000000      0x103 ./Startup/stm32f303x6_startup.o
+ .debug_macro   0x0000000000000000       0x6a ./Startup/stm32f303x6_startup.o
+ .debug_macro   0x0000000000000000      0x1df ./Startup/stm32f303x6_startup.o
  .text          0x0000000000000000        0x0 c:/st/stm32cubeide_1.7.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-exit.o)
  .data          0x0000000000000000        0x0 c:/st/stm32cubeide_1.7.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-exit.o)
  .bss           0x0000000000000000        0x0 c:/st/stm32cubeide_1.7.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.0.0.202105311346/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-exit.o)
@@ -461,13 +474,13 @@ LOAD linker stubs
                                          0x54 (size before relaxing)
  .comment       0x0000000000000053       0x54 ./Startup/stm32f303x6_startup.o
 
-.debug_info     0x0000000000000000      0x7c9
- .debug_info    0x0000000000000000       0x47 ./Src/main.o
- .debug_info    0x0000000000000047      0x782 ./Startup/stm32f303x6_startup.o
+.debug_info     0x0000000000000000      0x808
+ .debug_info    0x0000000000000000       0x86 ./Src/main.o
+ .debug_info    0x0000000000000086      0x782 ./Startup/stm32f303x6_startup.o
 
-.debug_abbrev   0x0000000000000000      0x11a
- .debug_abbrev  0x0000000000000000       0x3e ./Src/main.o
- .debug_abbrev  0x000000000000003e       0xdc ./Startup/stm32f303x6_startup.o
+.debug_abbrev   0x0000000000000000      0x125
+ .debug_abbrev  0x0000000000000000       0x49 ./Src/main.o
+ .debug_abbrev  0x0000000000000049       0xdc ./Startup/stm32f303x6_startup.o
 
 .debug_aranges  0x0000000000000000      0x2d0
  .debug_aranges
@@ -479,24 +492,26 @@ LOAD linker stubs
  .debug_ranges  0x0000000000000000       0x10 ./Src/main.o
  .debug_ranges  0x0000000000000010      0x2a0 ./Startup/stm32f303x6_startup.o
 
-.debug_macro    0x0000000000000000      0xf87
- .debug_macro   0x0000000000000000       0x11 ./Src/main.o
- .debug_macro   0x0000000000000011      0xaae ./Src/main.o
- .debug_macro   0x0000000000000abf       0x7b ./Startup/stm32f303x6_startup.o
- .debug_macro   0x0000000000000b3a       0x22 ./Startup/stm32f303x6_startup.o
- .debug_macro   0x0000000000000b5c       0x8e ./Startup/stm32f303x6_startup.o
- .debug_macro   0x0000000000000bea       0x51 ./Startup/stm32f303x6_startup.o
- .debug_macro   0x0000000000000c3b      0x103 ./Startup/stm32f303x6_startup.o
- .debug_macro   0x0000000000000d3e       0x6a ./Startup/stm32f303x6_startup.o
- .debug_macro   0x0000000000000da8      0x1df ./Startup/stm32f303x6_startup.o
+.debug_macro    0x0000000000000000     0x1868
+ .debug_macro   0x0000000000000000       0x72 ./Src/main.o
+ .debug_macro   0x0000000000000072      0xaae ./Src/main.o
+ .debug_macro   0x0000000000000b20       0x22 ./Src/main.o
+ .debug_macro   0x0000000000000b42       0x8e ./Src/main.o
+ .debug_macro   0x0000000000000bd0       0x51 ./Src/main.o
+ .debug_macro   0x0000000000000c21      0x103 ./Src/main.o
+ .debug_macro   0x0000000000000d24       0x6a ./Src/main.o
+ .debug_macro   0x0000000000000d8e      0x1df ./Src/main.o
+ .debug_macro   0x0000000000000f6d      0x880 ./Src/main.o
+ .debug_macro   0x00000000000017ed       0x7b ./Startup/stm32f303x6_startup.o
 
-.debug_line     0x0000000000000000      0xc4b
- .debug_line    0x0000000000000000       0x46 ./Src/main.o
- .debug_line    0x0000000000000046      0xc05 ./Startup/stm32f303x6_startup.o
+.debug_line     0x0000000000000000      0xff9
+ .debug_line    0x0000000000000000      0x3f4 ./Src/main.o
+ .debug_line    0x00000000000003f4      0xc05 ./Startup/stm32f303x6_startup.o
 
-.debug_str      0x0000000000000000     0x423f
- .debug_str     0x0000000000000000     0x2dc0 ./Src/main.o
- .debug_str     0x0000000000002dc0     0x147f ./Startup/stm32f303x6_startup.o
+.debug_str      0x0000000000000000     0x8bca
+ .debug_str     0x0000000000000000     0x8508 ./Src/main.o
+                                       0x8663 (size before relaxing)
+ .debug_str     0x0000000000008508      0x6c2 ./Startup/stm32f303x6_startup.o
                                        0x4398 (size before relaxing)
 
 .debug_frame    0x0000000000000000      0x808

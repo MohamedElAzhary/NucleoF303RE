@@ -1,4 +1,4 @@
-[submodule "MCAL/STM32F303RE_MCAL"]
-	path = MCAL/STM32F303RE_MCAL
+[submodule "STM32CubeIDE/MCAL/STM32F303RE_MCAL"]
+	path = STM32CubeIDE/MCAL/STM32F303RE_MCAL
 	url = git@github.com:MohamedElAzhary/STM32F303RE_MCAL.git
 	branch = main
