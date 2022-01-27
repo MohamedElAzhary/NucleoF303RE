@@ -40,6 +40,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/MCAL/STM32F303RE_MCAL/BSW/Port/Cfg_Templates}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/LED/Cfgs_Templates}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/LED/Core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/BUTTON/Api}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/BUTTON/Cfgs_Templates}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/BUTTON/Core}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.input.270315357" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.input"/>
 							</tool>
@@ -54,6 +57,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/LED/Api}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/LED/Cfgs_Templates}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/LED/Core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/BUTTON/Api}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/BUTTON/Cfgs_Templates}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/BUTTON/Core}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.449708275" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -125,6 +131,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/Debug/MCAL/STM32F303RE_MCAL/BSW/Port/Core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/LED/Cfgs_Templates}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/LED/Core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/BUTTON/Api}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/BUTTON/Cfgs_Templates}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/BUTTON/Core}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.input.1307328364" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.input"/>
 							</tool>
@@ -148,6 +157,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/Debug/MCAL/STM32F303RE_MCAL/BSW/Port/Core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/LED/Cfgs_Templates}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/LED/Core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/BUTTON/Api}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/BUTTON/Cfgs_Templates}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NucleoF303RE/APP/BUTTON/Core}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.181725941" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>

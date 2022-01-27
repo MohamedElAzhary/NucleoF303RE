@@ -1,3 +1,4 @@
+"./APP/BUTTON/Core/Button_core.o"
 "./APP/LED/Core/Led_core.o"
 "./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o"
 "./Src/main.o"
