@@ -11,6 +11,7 @@ RM := rm -rf
 -include sources.mk
 -include Startup/subdir.mk
 -include Src/subdir.mk
+-include MCAL/STM32F303RE_MCAL/BSW/USART/Core/subdir.mk
 -include MCAL/STM32F303RE_MCAL/BSW/Port/Core/subdir.mk
 -include MCAL/STM32F303RE_MCAL/BSW/Port/Api/subdir.mk
 -include APP/LED/Core/subdir.mk

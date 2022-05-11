@@ -1,22 +1,17 @@
 /*****************************************************************************
-* FileName     : Led_core.h
+* FileName     : Template_Button_cfg.h
 * Author       : &{user}
 * Created      : Jan 21, 2022
 * Description  :
 *
 *
 *****************************************************************************/
-#ifndef APP_LED_CORE_LED_CORE_H_
-#define APP_LED_CORE_LED_CORE_H_
+#ifndef _BUTTON_CFG_H_
+#define _BUTTON_CFG_H_
 
-#include "Led_cfg.h"
+#include "Port.h"
 
-void LED_ON();
+#define BUTTON_CFG_PORT				(PORT_REG_PORT_C_IDR)
+#define BUTTON_CFG_PIN				(PORT_CONST_PIN_13)
 
-void LED_OFF();
-
-void LED_TOGGLE();
-
-void LED_Init();
-
-#endif /* APP_LED_CORE_LED_CORE_H_ */
+#endif /* _BUTTON_CFG_H_ */

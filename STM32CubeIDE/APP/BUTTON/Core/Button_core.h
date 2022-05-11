@@ -9,7 +9,7 @@
 #ifndef _BUTTON_CORE_H_
 #define _BUTTON_CORE_H_
 
-#include "Template_Button_cfg.h"
+#include "Button_cfg.h"
 #include "stdbool.h"
 
 bool BUTTON_PullUp_IsPushed();

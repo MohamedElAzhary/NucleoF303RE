@@ -5,16 +5,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.c 
+../MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.c 
 
 OBJS += \
-./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o 
+./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o 
 
 C_DEPS += \
-./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.d 
+./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-MCAL/STM32F303RE_MCAL/BSW/Port/Core/%.o: ../MCAL/STM32F303RE_MCAL/BSW/Port/Core/%.c MCAL/STM32F303RE_MCAL/BSW/Port/Core/subdir.mk
+MCAL/STM32F303RE_MCAL/BSW/USART/Core/%.o: ../MCAL/STM32F303RE_MCAL/BSW/USART/Core/%.c MCAL/STM32F303RE_MCAL/BSW/USART/Core/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -c -I"D:/Library/Microcontrollers/MyRepos/NucleoF303RE/STM32CubeIDE/MCAL/STM32F303RE_MCAL/Defines" -I"D:/Library/Microcontrollers/MyRepos/NucleoF303RE/STM32CubeIDE/Startup" -I"D:/Library/Microcontrollers/MyRepos/NucleoF303RE/STM32CubeIDE/CFGH/inc" -I"D:/Library/Microcontrollers/MyRepos/NucleoF303RE/STM32CubeIDE/CFGH/src" -I"D:/Library/Microcontrollers/MyRepos/NucleoF303RE/STM32CubeIDE/MCAL/STM32F303RE_MCAL/BSW/Port/Api" -I"D:/Library/Microcontrollers/MyRepos/NucleoF303RE/STM32CubeIDE/MCAL/STM32F303RE_MCAL/BSW/Port/Core" -I"D:/Library/Microcontrollers/MyRepos/NucleoF303RE/STM32CubeIDE/MCAL/STM32F303RE_MCAL/BSW/USART/Api" -I"D:/Library/Microcontrollers/MyRepos/NucleoF303RE/STM32CubeIDE/MCAL/STM32F303RE_MCAL/BSW/USART/Core" -I"D:/Library/Microcontrollers/MyRepos/NucleoF303RE/STM32CubeIDE/APP/BUTTON/Api" -I"D:/Library/Microcontrollers/MyRepos/NucleoF303RE/STM32CubeIDE/APP/BUTTON/Core" -I"D:/Library/Microcontrollers/MyRepos/NucleoF303RE/STM32CubeIDE/APP/LED/Api" -I"D:/Library/Microcontrollers/MyRepos/NucleoF303RE/STM32CubeIDE/APP/LED/Core" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 

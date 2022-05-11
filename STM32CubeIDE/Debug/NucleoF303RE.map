@@ -71,7 +71,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x103 ./APP/LED/Core/Led_core.o
  .debug_macro   0x0000000000000000       0x6a ./APP/LED/Core/Led_core.o
  .debug_macro   0x0000000000000000      0x1df ./APP/LED/Core/Led_core.o
- .debug_macro   0x0000000000000000      0x736 ./APP/LED/Core/Led_core.o
+ .debug_macro   0x0000000000000000      0x81d ./APP/LED/Core/Led_core.o
  .debug_macro   0x0000000000000000      0x450 ./APP/LED/Core/Led_core.o
  .debug_macro   0x0000000000000000      0x1f0 ./APP/LED/Core/Led_core.o
  .group         0x0000000000000000        0xc ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
@@ -94,9 +94,44 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x103 ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
  .debug_macro   0x0000000000000000       0x6a ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
  .debug_macro   0x0000000000000000      0x1df ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
- .debug_macro   0x0000000000000000      0x736 ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
+ .debug_macro   0x0000000000000000      0x81d ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
  .debug_macro   0x0000000000000000      0x450 ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
  .debug_macro   0x0000000000000000      0x1f0 ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
+ .group         0x0000000000000000        0xc ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .group         0x0000000000000000        0xc ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .group         0x0000000000000000        0xc ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .group         0x0000000000000000        0xc ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .group         0x0000000000000000        0xc ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .group         0x0000000000000000        0xc ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .group         0x0000000000000000        0xc ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .group         0x0000000000000000        0xc ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .group         0x0000000000000000        0xc ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .text          0x0000000000000000        0x0 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .data          0x0000000000000000        0x0 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .bss           0x0000000000000000        0x0 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .text.USART_Init
+                0x0000000000000000       0x18 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_info    0x0000000000000000       0x9a ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_abbrev  0x0000000000000000       0x56 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_aranges
+                0x0000000000000000       0x20 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_ranges  0x0000000000000000       0x10 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_macro   0x0000000000000000       0x9f ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_macro   0x0000000000000000      0xa96 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_macro   0x0000000000000000       0xe8 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_macro   0x0000000000000000       0x22 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_macro   0x0000000000000000       0x8e ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_macro   0x0000000000000000       0x51 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_macro   0x0000000000000000      0x103 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_macro   0x0000000000000000       0x6a ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_macro   0x0000000000000000      0x1df ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_macro   0x0000000000000000      0x817 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_line    0x0000000000000000      0x565 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_str     0x0000000000000000     0x8b69 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .comment       0x0000000000000000       0x54 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .debug_frame   0x0000000000000000       0x30 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
+ .ARM.attributes
+                0x0000000000000000       0x34 ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
  .group         0x0000000000000000        0xc ./Src/main.o
  .group         0x0000000000000000        0xc ./Src/main.o
  .group         0x0000000000000000        0xc ./Src/main.o
@@ -120,6 +155,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x103 ./Src/main.o
  .debug_macro   0x0000000000000000       0x6a ./Src/main.o
  .debug_macro   0x0000000000000000      0x1df ./Src/main.o
+ .debug_macro   0x0000000000000000      0x817 ./Src/main.o
  .debug_macro   0x0000000000000000      0x1f0 ./Src/main.o
  .debug_macro   0x0000000000000000       0x22 ./Src/main.o
  .group         0x0000000000000000        0xc ./Startup/stm32f303x6_startup.o
@@ -209,6 +245,7 @@ LOAD c:/st/stm32cubeide_1.7.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
 LOAD ./APP/BUTTON/Core/Button_core.o
 LOAD ./APP/LED/Core/Led_core.o
 LOAD ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
+LOAD ./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o
 LOAD ./Src/main.o
 LOAD ./Startup/stm32f303x6_startup.o
 START GROUP
@@ -610,7 +647,7 @@ LOAD linker stubs
  .debug_ranges  0x0000000000000050       0x10 ./Src/main.o
  .debug_ranges  0x0000000000000060      0x2a0 ./Startup/stm32f303x6_startup.o
 
-.debug_macro    0x0000000000000000     0x2ba2
+.debug_macro    0x0000000000000000     0x2559
  .debug_macro   0x0000000000000000       0xb6 ./APP/BUTTON/Core/Button_core.o
  .debug_macro   0x00000000000000b6      0xa96 ./APP/BUTTON/Core/Button_core.o
  .debug_macro   0x0000000000000b4c       0x22 ./APP/BUTTON/Core/Button_core.o
@@ -619,38 +656,37 @@ LOAD linker stubs
  .debug_macro   0x0000000000000c4d      0x103 ./APP/BUTTON/Core/Button_core.o
  .debug_macro   0x0000000000000d50       0x6a ./APP/BUTTON/Core/Button_core.o
  .debug_macro   0x0000000000000dba      0x1df ./APP/BUTTON/Core/Button_core.o
- .debug_macro   0x0000000000000f99      0x736 ./APP/BUTTON/Core/Button_core.o
- .debug_macro   0x00000000000016cf      0x450 ./APP/BUTTON/Core/Button_core.o
- .debug_macro   0x0000000000001b1f      0x1f0 ./APP/BUTTON/Core/Button_core.o
- .debug_macro   0x0000000000001d0f       0x10 ./APP/BUTTON/Core/Button_core.o
- .debug_macro   0x0000000000001d1f       0x22 ./APP/BUTTON/Core/Button_core.o
- .debug_macro   0x0000000000001d41       0xb7 ./APP/LED/Core/Led_core.o
- .debug_macro   0x0000000000001df8       0x16 ./APP/LED/Core/Led_core.o
- .debug_macro   0x0000000000001e0e       0x8a ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
- .debug_macro   0x0000000000001e98       0xd7 ./Src/main.o
- .debug_macro   0x0000000000001f6f      0x730 ./Src/main.o
- .debug_macro   0x000000000000269f      0x456 ./Src/main.o
- .debug_macro   0x0000000000002af5       0x1c ./Src/main.o
- .debug_macro   0x0000000000002b11       0x16 ./Src/main.o
- .debug_macro   0x0000000000002b27       0x7b ./Startup/stm32f303x6_startup.o
+ .debug_macro   0x0000000000000f99      0x81d ./APP/BUTTON/Core/Button_core.o
+ .debug_macro   0x00000000000017b6      0x450 ./APP/BUTTON/Core/Button_core.o
+ .debug_macro   0x0000000000001c06      0x1f0 ./APP/BUTTON/Core/Button_core.o
+ .debug_macro   0x0000000000001df6       0x10 ./APP/BUTTON/Core/Button_core.o
+ .debug_macro   0x0000000000001e06       0x22 ./APP/BUTTON/Core/Button_core.o
+ .debug_macro   0x0000000000001e28       0xb7 ./APP/LED/Core/Led_core.o
+ .debug_macro   0x0000000000001edf       0x16 ./APP/LED/Core/Led_core.o
+ .debug_macro   0x0000000000001ef5       0x8a ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
+ .debug_macro   0x0000000000001f7f       0xd7 ./Src/main.o
+ .debug_macro   0x0000000000002056      0x456 ./Src/main.o
+ .debug_macro   0x00000000000024ac       0x1c ./Src/main.o
+ .debug_macro   0x00000000000024c8       0x16 ./Src/main.o
+ .debug_macro   0x00000000000024de       0x7b ./Startup/stm32f303x6_startup.o
 
-.debug_line     0x0000000000000000     0x25b7
- .debug_line    0x0000000000000000      0x626 ./APP/BUTTON/Core/Button_core.o
- .debug_line    0x0000000000000626      0x6b9 ./APP/LED/Core/Led_core.o
- .debug_line    0x0000000000000cdf      0x51a ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
- .debug_line    0x00000000000011f9      0x7b9 ./Src/main.o
- .debug_line    0x00000000000019b2      0xc05 ./Startup/stm32f303x6_startup.o
+.debug_line     0x0000000000000000     0x2385
+ .debug_line    0x0000000000000000      0x598 ./APP/BUTTON/Core/Button_core.o
+ .debug_line    0x0000000000000598      0x62e ./APP/LED/Core/Led_core.o
+ .debug_line    0x0000000000000bc6      0x4ed ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
+ .debug_line    0x00000000000010b3      0x6cd ./Src/main.o
+ .debug_line    0x0000000000001780      0xc05 ./Startup/stm32f303x6_startup.o
 
-.debug_str      0x0000000000000000     0xba67
- .debug_str     0x0000000000000000     0xb248 ./APP/BUTTON/Core/Button_core.o
-                                       0xb3b2 (size before relaxing)
- .debug_str     0x000000000000b248      0x10c ./APP/LED/Core/Led_core.o
-                                       0xb3a5 (size before relaxing)
- .debug_str     0x000000000000b354       0x3d ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
-                                       0xb2cd (size before relaxing)
- .debug_str     0x000000000000b391       0x1f ./Src/main.o
-                                       0xb422 (size before relaxing)
- .debug_str     0x000000000000b3b0      0x6b7 ./Startup/stm32f303x6_startup.o
+.debug_str      0x0000000000000000     0xbfe0
+ .debug_str     0x0000000000000000     0xb7c1 ./APP/BUTTON/Core/Button_core.o
+                                       0xb92b (size before relaxing)
+ .debug_str     0x000000000000b7c1      0x10c ./APP/LED/Core/Led_core.o
+                                       0xb91e (size before relaxing)
+ .debug_str     0x000000000000b8cd       0x3d ./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o
+                                       0xb846 (size before relaxing)
+ .debug_str     0x000000000000b90a       0x1f ./Src/main.o
+                                       0xb99b (size before relaxing)
+ .debug_str     0x000000000000b929      0x6b7 ./Startup/stm32f303x6_startup.o
                                        0x436e (size before relaxing)
 
 .debug_frame    0x0000000000000000      0x92c
