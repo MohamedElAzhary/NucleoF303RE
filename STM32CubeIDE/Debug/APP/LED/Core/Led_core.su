@@ -1,0 +1,4 @@
+Led_core.c:11:6:LED_ON	4	static
+Led_core.c:15:6:LED_OFF	4	static
+Led_core.c:19:6:LED_TOGGLE	4	static
+Led_core.c:23:6:LED_Init	4	static
