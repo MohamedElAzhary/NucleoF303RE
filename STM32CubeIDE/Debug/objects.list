@@ -1,6 +1,7 @@
 "./APP/BUTTON/Core/Button_core.o"
 "./APP/LED/Core/Led_core.o"
 "./MCAL/STM32F303RE_MCAL/BSW/Port/Core/Port_core.o"
+"./MCAL/STM32F303RE_MCAL/BSW/RCC/Core/RCC_core.o"
 "./MCAL/STM32F303RE_MCAL/BSW/USART/Core/Usart_core.o"
 "./Src/main.o"
 "./Startup/stm32f303x6_startup.o"
