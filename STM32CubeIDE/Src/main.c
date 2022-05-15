@@ -10,12 +10,14 @@
 #include "Port.h"
 #include "Led.h"
 #include "Button.h"
+#include "RCC.h"
 
 int main(void){
 	//uint32_t i = 0;
 
 	PORT_Init();
 	LED_Init();
+	RCC_Init();
 
 	while(1){
 		if(BUTTON_PullDown_IsPushed()){
